@@ -1,11 +1,15 @@
-FROM debian
+FROM debian:buster
 
 USER root
 
-COPY ./client.sh /scripts/cliente.sh
+RUN mkdir -p /scripts
 
-RUN apt update && \
-    apt install curl -y && \
-    chmod +x /scripts/client.sh
+WORKDIR /scripts
 
-ENTRYPOINT [ "/scripts/client.sh" ]
+COPY client.sh cliente.sh
+
+RUN apt update 
+RUN apt install curl -y
+RUN chmod +x cliente.sh
+
+ENTRYPOINT [ "/scripts/cliente.sh" ]
