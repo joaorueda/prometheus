@@ -1,15 +1,14 @@
 package br.com.alura.forum.config.security;
 
-import java.util.Date;
-
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.Authentication;
-import org.springframework.stereotype.Service;
-
 import br.com.alura.forum.modelo.Usuario;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Service;
+
+import java.util.Date;
 
 @Service
 public class TokenService {
@@ -46,7 +45,12 @@ public class TokenService {
 
 	public Long getIdUsuario(String token) {
 		Claims claims = Jwts.parser().setSigningKey(this.secret).parseClaimsJws(token).getBody();
+		//language=JSON
+		String a = "{\"name\":  \"teste\", \"palavrao\":  \"vaisefude\"}";
 		return  Long.parseLong(claims.getSubject());
 	}
+
+
+
 
 }
